@@ -19,8 +19,16 @@ phonebook_dict = {
     "Elizabeth": "484-584-2923"
  }
 
+for key,val in phonebook_dict.items():
+    print("Found original entries for " + key + ": " + val)
+
 print(phonebook_dict["Elizabeth"]) # print Elizabeth's number
+
 phonebook_dict.update( {"Kareem" : "938-489-1234"} ) # add Kareem's info to the dictionary
+
 del phonebook_dict["Alice"] # remove Alice's info
+
 phonebook_dict["Bob"] = "968-345-2345" # change Bob's phone number
-print(phonebook_dict)
+
+for key,val in phonebook_dict.items():
+    print("Found entry for " + key + ": " + val)
