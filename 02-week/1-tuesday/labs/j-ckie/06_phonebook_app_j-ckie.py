@@ -46,7 +46,7 @@ def main():
     if phonebook_options == "1": # REMEMBER TO PUT INPUT IN QUOTES!!!!
         name_lookup = input("Enter the name of the person:  ")
         time.sleep(1)
-        print(phonebook[name_lookup])
+        print(phonebook[])
     
     elif phonebook_options == "5":
         print("Good bye!")
