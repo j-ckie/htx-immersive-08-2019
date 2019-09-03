@@ -21,7 +21,7 @@ ramit = {
     ] 
 }
 
-print(ramit["email"]) 
-print(ramit["interests"][0])
-print(ramit["friends"][0]["email"])
-print(ramit["friends"][1]["interests"][1])
+print(ramit["email"]) # Write a python expression that gets the email address of Ramit.
+print(ramit["interests"][0]) # Write a python expression that gets the first of Ramit's interests.
+print(ramit["friends"][0]["email"]) # Write a python expression that gets the email address of Jasmine.
+print(ramit["friends"][1]["interests"][1]) # Write a python expression that gets the second of Jan's two interests.
