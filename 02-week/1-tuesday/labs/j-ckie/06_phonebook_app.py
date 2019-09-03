@@ -17,6 +17,7 @@
 # If they choose to quit, end the program.
 
 import time
+import pickle
 
 def main():
 
@@ -32,7 +33,7 @@ def main():
     }
 
     with open("phonebook_app.pickle", "wb") as handle: # store data to external file
-        pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     print("Welcome to the Electronic Phone Book")
     print("=====================")
