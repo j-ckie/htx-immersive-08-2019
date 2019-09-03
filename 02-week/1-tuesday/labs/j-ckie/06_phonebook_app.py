@@ -1,0 +1,100 @@
+# You will write a command line program to manage a phone book. When you start the phonebook.py program, it will print out a menu and ask the user to enter a choice:
+
+# $ python phonebook.py 
+# Electronic Phone Book 
+# ===================== 
+# 1. Look up an entry 
+# 2. Set an entry 
+# 3. Delete an entry 
+# 4. List all entries 
+# 5. Quit
+# What do you want to do (1-5)?
+
+# If they choose to look up an entry, you will ask them for the person's name, and then look up the person's phone number by the given name and print it to the screen.
+# If they choose to set an entry, you will prompt them for the person's name and the person's phone number,
+# If they choose to delete an entry, you will prompt them for the person's name and delete the given person's entry.
+# If they choose to list all entries, you will go through all entries in the dictionary and print each out to the terminal.
+# If they choose to quit, end the program.
+
+import time
+
+def main():
+
+    menu_restart = "Would you like to go to the previous menu? (Y / N)  "
+
+    phonebook = { 
+        "Alice": "703-493-1834", 
+        "Bob": "857-384-1234", 
+        "Elizabeth": "484-584-2923",
+        "Jared" : "555-987-2350",
+        "Angela" : "555-872-9410",
+        "Melissa" : "555-554-5523"
+    }
+
+    with open("phonebook_app.pickle", "wb") as handle: # store data to external file
+        pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+    print("Welcome to the Electronic Phone Book")
+    print("=====================")
+    time.sleep(.5)
+    print("Please select from one of the following:  ")
+    time.sleep(1)
+    print("1. Look up an entry")
+    time.sleep(.3)
+    print("2. Set an entry")
+    time.sleep(.3)
+    print("3. Delete an entry")
+    time.sleep(.3)
+    print("4. List all entries")
+    time.sleep(.3)
+    print("5. Quit")
+    time.sleep(.3)
+    phonebook_options = int(input("What would you like to do? Select 1 - 5  "))
+
+    if phonebook_options == 1: # Number look up
+        name_lookup = input("Enter the name of the person:  ").capitalize()
+        if name_lookup in phonebook:
+            print("This person's number is:  ", phonebook[name_lookup])
+            time.sleep(.2)
+            option_one_restart = input(menu_restart).upper()
+            if option_one_restart == "Y":
+                print("Redirecting...")
+                time.sleep(1)
+                main()
+            else:
+                print("Good bye!")   
+        else:
+            print("Please select a valid person.")
+            time.sleep(1)
+            main()
+    
+    elif phonebook_options == 2: # set a new dictionary entry
+        print("Please fill in the information below:")
+        new_name = input("Name:  ").capitalize()
+        new_num = input("Number:  ")
+        phonebook.update({new_name : new_num})
+        time.sleep(.2)
+        print(f"Entry stored for {new_name}")
+        main()
+
+    elif phonebook_options == 4: # print phonebook listings REMEMBER TO FIX THIS SO IT'S PROPERLY FORMATTED
+        for key,val in phonebook.items():
+            print("Found entry for " + key + ": " + val)
+            time.sleep(.2)
+        option_four_restart = input(menu_restart).upper() 
+        if option_four_restart == "Y":
+            print("Redirecting...")
+            time.sleep(1)
+            main()
+        else:
+            print("Good bye!")
+    
+    elif phonebook_options == 5:
+        print("Good bye!")
+
+    else: # restarts phonebook app if user inputs incorrect value
+        print("Please start from the beginning and enter a valid choice.")
+        time.sleep(1)
+        main()
+
+main()
