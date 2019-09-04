@@ -98,7 +98,7 @@ def main():
         save(phonebook)
         main()
     
-    elif phonebook_options == 3: #delete dictionary entry
+    elif phonebook_options == 3: # delete dictionary entry
         print("Please fill in the information below:")
         name_del = input("Enter the name of the person who's information you'd like to delete:  ").capitalize()
         confirm = input("You are about to delete a person's information. This action cannot be undone. Are you sure? (Y/N)  ").upper()
@@ -106,7 +106,7 @@ def main():
             print("Now deleting...")
             time.sleep(1)
             del phonebook[name_del]
-            save(phonebook)
+            save(phonebook) # runs save function
             option_three_restart = input(menu_restart).upper()
             if option_three_restart == "Y":
                 print("Redirecting...")
@@ -119,7 +119,7 @@ def main():
             time.sleep(1)
             main()
 
-    elif phonebook_options == 4: # print phonebook listings REMEMBER TO FIX THIS SO IT'S PROPERLY FORMATTED
+    elif phonebook_options == 4: # print phonebook listings
         for key,val in phonebook.items():
             print("Found entry for " + key + ": " + val)
             time.sleep(.2)
