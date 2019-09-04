@@ -16,24 +16,42 @@
 # If they choose to list all entries, you will go through all entries in the dictionary and print each out to the terminal.
 # If they choose to quit, end the program.
 
-import time
-import pickle
+import time # timer
+import pickle # file saver/loader
+import os.path # path checker
+
+def save(phonebook):
+        # save file
+        with open("phonebook_app.pickle", "wb") as handle: # store data to external file
+            pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+def init():
+    # check if file exists
+    if os.path.exists("phonebook_app.pickle"):
+        with open("phonebook_app.pickle", "rb") as handle:
+            phonebook = pickle.load(handle)
+    
+    else:
+        #phonebook initialization
+        phonebook = { 
+            "Alice": "703-493-1834", 
+            "Bob": "857-384-1234", 
+            "Elizabeth": "484-584-2923",
+            "Jared" : "555-987-2350",
+            "Angela" : "555-872-9410",
+            "Melissa" : "555-554-5523"
+        }
+        # saves file
+        with open("phonebook_app.pickle", "wb") as handle: # store data to external file
+            pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    return phonebook
 
 def main():
+    
 
     menu_restart = "Would you like to go to the previous menu? (Y / N)  "
 
-    phonebook = { 
-        "Alice": "703-493-1834", 
-        "Bob": "857-384-1234", 
-        "Elizabeth": "484-584-2923",
-        "Jared" : "555-987-2350",
-        "Angela" : "555-872-9410",
-        "Melissa" : "555-554-5523"
-    }
-
-    with open("phonebook_app.pickle", "wb") as handle: # store data to external file
-        pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    phonebook = init() # load phonebook file -> variables created in a function live only in that function, need to "recreate" variable while referencing function
 
     print("Welcome to the Electronic Phone Book")
     print("=====================")
@@ -64,6 +82,7 @@ def main():
                 main()
             else:
                 print("Good bye!")   
+                save(phonebook)
         else:
             print("Please select a valid person.")
             time.sleep(1)
@@ -76,7 +95,29 @@ def main():
         phonebook.update({new_name : new_num})
         time.sleep(.2)
         print(f"Entry stored for {new_name}")
+        save(phonebook)
         main()
+    
+    elif phonebook_options == 3: #delete dictionary entry
+        print("Please fill in the information below:")
+        name_del = input("Enter the name of the person who's information you'd like to delete:  ").capitalize()
+        confirm = input("You are about to delete a person's information. This action cannot be undone. Are you sure? (Y/N)  ").upper()
+        if confirm == "Y":
+            print("Now deleting...")
+            time.sleep(1)
+            del phonebook[name_del]
+            save(phonebook)
+            option_three_restart = input(menu_restart).upper()
+            if option_three_restart == "Y":
+                print("Redirecting...")
+                time.sleep(1)
+                main()
+            else:
+                print("Good bye!")
+        else:
+            print("Now redirecting to main menu...")
+            time.sleep(1)
+            main()
 
     elif phonebook_options == 4: # print phonebook listings REMEMBER TO FIX THIS SO IT'S PROPERLY FORMATTED
         for key,val in phonebook.items():
@@ -89,9 +130,11 @@ def main():
             main()
         else:
             print("Good bye!")
+            save(phonebook)
     
     elif phonebook_options == 5:
         print("Good bye!")
+        save(phonebook)
 
     else: # restarts phonebook app if user inputs incorrect value
         print("Please start from the beginning and enter a valid choice.")
