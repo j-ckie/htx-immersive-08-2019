@@ -32,7 +32,7 @@ def init():
             phonebook = pickle.load(handle)
     
     else:
-        #phonebook initialization
+        #phonebook initialization if pickle file does not exist
         phonebook = { 
             "Alice": "703-493-1834", 
             "Bob": "857-384-1234", 
