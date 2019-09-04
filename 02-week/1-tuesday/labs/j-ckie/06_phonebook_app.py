@@ -32,7 +32,7 @@ def init():
             phonebook = pickle.load(handle)
     
     else:
-        #phonebook initialization if pickle file does not exist
+        # phonebook initialization if pickle file does not exist
         phonebook = { 
             "Alice": "703-493-1834", 
             "Bob": "857-384-1234", 
@@ -46,10 +46,19 @@ def init():
             pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
     return phonebook
 
-def main():
-    
-
+def back_to_main_menu(phonebook):
     menu_restart = "Would you like to go to the previous menu? (Y / N)  "
+
+    app_restart = input(menu_restart).upper()
+    if app_restart == "Y":
+        print("Redirecting...")
+        time.sleep(1)
+        main()
+    else:
+        print("Good bye!")
+        save(phonebook)
+
+def main():
 
     phonebook = init() # load phonebook file -> variables created in a function live only in that function, need to "recreate" variable while referencing function
 
@@ -75,14 +84,7 @@ def main():
         if name_lookup in phonebook:
             print("This person's number is:  ", phonebook[name_lookup])
             time.sleep(.2)
-            option_one_restart = input(menu_restart).upper()
-            if option_one_restart == "Y":
-                print("Redirecting...")
-                time.sleep(1)
-                main() # call main function to restart from beginning
-            else:
-                print("Good bye!")   
-                save(phonebook) # call save function to save dictionary changes
+            back_to_main_menu(phonebook)
         else:
             print("Please select a valid person.")
             time.sleep(1)
@@ -107,13 +109,7 @@ def main():
             time.sleep(1)
             del phonebook[name_del]
             save(phonebook) # call save function to save dictionary changes
-            option_three_restart = input(menu_restart).upper()
-            if option_three_restart == "Y":
-                print("Redirecting...")
-                time.sleep(1)
-                main() # call main function to restart from beginning
-            else:
-                print("Good bye!")
+            back_to_main_menu(phonebook)
         else:
             print("Now redirecting to main menu...")
             time.sleep(1)
@@ -123,14 +119,7 @@ def main():
         for key,val in phonebook.items():
             print("Found entry for " + key + ": " + val)
             time.sleep(.2)
-        option_four_restart = input(menu_restart).upper() 
-        if option_four_restart == "Y":
-            print("Redirecting...")
-            time.sleep(1)
-            main() # call main function to restart from beginning
-        else:
-            print("Good bye!")
-            save(phonebook) # call save function to save dictionary changes
+        back_to_main_menu(phonebook)
     
     elif phonebook_options == 5:
         print("Good bye!")
