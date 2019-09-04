@@ -79,10 +79,10 @@ def main():
             if option_one_restart == "Y":
                 print("Redirecting...")
                 time.sleep(1)
-                main()
+                main() # call main function to restart from beginning
             else:
                 print("Good bye!")   
-                save(phonebook)
+                save(phonebook) # call save function to save dictionary changes
         else:
             print("Please select a valid person.")
             time.sleep(1)
@@ -95,8 +95,8 @@ def main():
         phonebook.update({new_name : new_num})
         time.sleep(.2)
         print(f"Entry stored for {new_name}")
-        save(phonebook)
-        main()
+        save(phonebook) # call save function to save dictionary changes
+        main() # call main function to restart from beginning
     
     elif phonebook_options == 3: # delete dictionary entry
         print("Please fill in the information below:")
@@ -106,18 +106,18 @@ def main():
             print("Now deleting...")
             time.sleep(1)
             del phonebook[name_del]
-            save(phonebook) # runs save function
+            save(phonebook) # call save function to save dictionary changes
             option_three_restart = input(menu_restart).upper()
             if option_three_restart == "Y":
                 print("Redirecting...")
                 time.sleep(1)
-                main()
+                main() # call main function to restart from beginning
             else:
                 print("Good bye!")
         else:
             print("Now redirecting to main menu...")
             time.sleep(1)
-            main()
+            main() # call main function to restart from beginning
 
     elif phonebook_options == 4: # print phonebook listings
         for key,val in phonebook.items():
@@ -127,18 +127,18 @@ def main():
         if option_four_restart == "Y":
             print("Redirecting...")
             time.sleep(1)
-            main()
+            main() # call main function to restart from beginning
         else:
             print("Good bye!")
-            save(phonebook)
+            save(phonebook) # call save function to save dictionary changes
     
     elif phonebook_options == 5:
         print("Good bye!")
-        save(phonebook)
+        save(phonebook) # call save function to save dictionary changes
 
     else: # restarts phonebook app if user inputs incorrect value
         print("Please start from the beginning and enter a valid choice.")
         time.sleep(1)
-        main()
+        main() # call main function to restart from beginning
 
-main()
+main() # call main function to restart from beginning
