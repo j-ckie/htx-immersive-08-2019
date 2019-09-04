@@ -2,9 +2,9 @@ import pickle
 import os.path
 
 def init():
-    # check if file exists
-    if os.path.exists("phonebook_app.pickle"):
-        with open("phonebook_app.pickle", "rb") as handle:
+# check if file exists
+    if os.path.exists("data.pickle"):
+        with open("data.pickle", "rb") as handle:
             phonebook = pickle.load(handle)
     
     else:
@@ -18,6 +18,6 @@ def init():
             "Melissa" : "555-554-5523"
         }
         # saves file
-        with open("phonebook_app.pickle", "wb") as handle: # store data to external file
+        with open("data.pickle", "wb") as handle: # store data to external file
             pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
     return phonebook

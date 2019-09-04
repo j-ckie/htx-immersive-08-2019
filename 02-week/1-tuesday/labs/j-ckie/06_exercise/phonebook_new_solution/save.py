@@ -1,7 +1,7 @@
-import pickle
-import init
+# save changes to file
 
-#save file
-def save(phonebook):
-        with open("phonebook_app.pickle", "wb") as handle: # store data to external file -> "wb" means "write" "binary"
-            pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
+import pickle
+
+def save():
+    with open("data.pickle", "wb") as handle: # store data to external file -> "wb" means "write" "binary"
+        pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
