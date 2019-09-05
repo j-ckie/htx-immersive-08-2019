@@ -103,17 +103,22 @@ def main():
     elif phonebook_options == 3: # delete dictionary entry
         print("Please fill in the information below:")
         name_del = input("Enter the name of the person who's information you'd like to delete:  ").capitalize()
-        confirm = input("You are about to delete a person's information. This action cannot be undone. Are you sure? (Y/N)  ").upper()
-        if confirm == "Y":
-            print("Now deleting...")
-            time.sleep(1)
-            del phonebook[name_del]
-            save(phonebook) # call save function to save dictionary changes
-            back_to_main_menu(phonebook)
+        if name_del in phonebook:
+            confirm = input("You are about to delete a person's information. This action cannot be undone. Are you sure? (Y/N)  ").upper()
+            if confirm == "Y":
+                print("Now deleting...")
+                time.sleep(1)
+                del phonebook[name_del]
+                save(phonebook) # call save function to save dictionary changes
+                back_to_main_menu(phonebook)
+            else:
+                print("Now redirecting to main menu...")
+                time.sleep(1)
+                main() # call main function to restart from beginning
         else:
-            print("Now redirecting to main menu...")
+            print("Please enter a valid person.")
             time.sleep(1)
-            main() # call main function to restart from beginning
+            main()
 
     elif phonebook_options == 4: # print phonebook listings
         for key,val in phonebook.items():
@@ -130,4 +135,4 @@ def main():
         time.sleep(1)
         main() # call main function to restart from beginning
 
-main() # call main function to restart from beginning
+main() 
