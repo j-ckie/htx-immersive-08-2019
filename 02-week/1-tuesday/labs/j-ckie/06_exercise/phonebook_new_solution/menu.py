@@ -1,12 +1,7 @@
+from save import *
 import time
-import save
 
-def user_prompt():
-    int(input("What would you like to do? Select 1 - 5  "))
-
-def selection():
-    menu()
-    return user_prompt()
+phonebook = init()
 
 def menu():
     print("Welcome to the Electronic Phone Book")
@@ -24,17 +19,19 @@ def menu():
     time.sleep(.3)
     print("5. Quit")
     time.sleep(.3)
-    user_prompt()
+    phonebook_options = int(input("What would you like to do? Select 1 - 5  "))
+    return phonebook_options
 
-def back(phonebook):
-    menu_restart = "Would you like to go to the previous menu? (Y / N)  "
+def previous():
+    menu_restart = "Would you like to go to the previous menu? Y / N  "
+    back = input(menu_restart).upper()
+    return back
 
-    app_restart = input(menu_restart).upper()
-    if app_restart == "Y":
+def choice_previous():
+    if previous() == "Y":
+        save(phonebook)
         print("Redirecting...")
         time.sleep(1)
-        menu()
     else:
+        save(phonebook)
         print("Good bye!")
-        save.save(phonebook)
-
