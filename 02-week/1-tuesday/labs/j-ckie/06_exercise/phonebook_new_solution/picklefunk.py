@@ -1,5 +1,3 @@
-# save changes to file
-
 import pickle
 import os.path
 
@@ -8,7 +6,6 @@ def init():
     if os.path.exists("data.pickle"):
         with open("data.pickle", "rb") as handle:
             phonebook = pickle.load(handle)
-    
     else:
         # create pickle file if it does not exist
         phonebook = { 
