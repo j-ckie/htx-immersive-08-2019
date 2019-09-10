@@ -1,0 +1,251 @@
+<!--Create the ultimate 90s-early 00s monstrosity with the following:
+- obnoxious auto-playing music (preferably the Meteora album from Linkin Park)
+- cursor animations
+- animated obnoxious BGs
+- MARQUEE HEADERS
+- disgusting/hard to read font colors
+- web hit counter-->
+
+<!DOCTYPE html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>An Ode to the Early Internet</title>
+    <style>
+    
+    marquee {
+        font-size: 4em;
+        font-weight: 900;
+        color:blueviolet;
+        background-color: #000;
+    }
+
+    audio {
+        float:bottom;
+    }
+
+    body {
+        background-image: url("black-patterns-4.jpg");
+        color:darkmagenta;
+        cursor: url("cur1073.ani"), auto;
+    }
+
+    h1 {
+        color:crimson;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        text-align: center;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        font-size: 1.5rem;
+        color:darkslategrey;
+    }
+
+    th {
+        font-size: 2rem;
+        color:dodgerblue;   
+        text-align: left;
+    }
+
+    .python-phonebook {
+        border:firebrick;
+        border-width: 5px;
+        padding: 1rem;
+        width: 75%;
+        margin: 2rem;
+        height: 12.5rem;
+        overflow: scroll;
+        color: #fff;
+    }
+
+
+    </style>
+</head>
+    <body>         
+        <marquee scrollamount=24>Welcome to the most disgusting website I'll ever put together, where I use everything I thought was "cool" on a website as a kid</marquee>
+        <div class="navbar">
+           <!--put some navigation stuff here later-->
+        </div>
+
+        <h1>Goal of this site: make the most obnoxious homage to the early 90s/00s as I possibly can</h1>
+
+        <table>
+            <tr>
+                <th>Things every 90s/00s website had:</th>
+                <th>Description:</th>
+            </tr>
+            <tr>
+                <td>Weird marquee titles</td>
+                <td>These were used as an early "call to action" for information people thought was important.</td>
+            </tr>
+            <tr>
+                <td>Hard to read font colors</td>
+                <td>What edgy website wouldn't be complete with black/dark backgrounds and neon (or too dark) font colors?</td>
+            </tr>
+            <tr>
+                <td>Web hit counter</td>
+                <td>SEO didn't exist back in the day. This was the way people kept track of their site traffic</td>
+            </tr>
+        </table>
+
+        <h1>Python Projects</h1>
+        <h4>Phonebook App</h4>
+        <div class="python-phonebook">
+            <xmp>
+                # You will write a command line program to manage a phone book. When you start the phonebook.py program, it will print out a menu and ask the user to enter a choice:
+
+                # $ python phonebook.py 
+                # Electronic Phone Book 
+                # ===================== 
+                # 1. Look up an entry 
+                # 2. Set an entry 
+                # 3. Delete an entry 
+                # 4. List all entries 
+                # 5. Quit
+                # What do you want to do (1-5)?
+                
+                # If they choose to look up an entry, you will ask them for the person's name, and then look up the person's phone number by the given name and print it to the screen.
+                # If they choose to set an entry, you will prompt them for the person's name and the person's phone number,
+                # If they choose to delete an entry, you will prompt them for the person's name and delete the given person's entry.
+                # If they choose to list all entries, you will go through all entries in the dictionary and print each out to the terminal.
+                # If they choose to quit, end the program.
+                
+                import time # timer
+                import pickle # file saver/loader
+                import os.path # path checker
+                
+                def save(phonebook):
+                        # save file
+                        with open("phonebook_app.pickle", "wb") as handle: # store data to external file -> "wb" means "write" "binary"
+                            pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
+                
+                def init():
+                    # check if file exists
+                    if os.path.exists("phonebook_app.pickle"):
+                        with open("phonebook_app.pickle", "rb") as handle:
+                            phonebook = pickle.load(handle)
+                    
+                    else:
+                        # phonebook initialization if pickle file does not exist
+                        phonebook = { 
+                            "Alice": "703-493-1834", 
+                            "Bob": "857-384-1234", 
+                            "Elizabeth": "484-584-2923",
+                            "Jared" : "555-987-2350",
+                            "Angela" : "555-872-9410",
+                            "Melissa" : "555-554-5523"
+                        }
+                        # saves file
+                        with open("phonebook_app.pickle", "wb") as handle: # store data to external file
+                            pickle.dump(phonebook, handle, protocol=pickle.HIGHEST_PROTOCOL)
+                    return phonebook
+                
+                def back_to_main_menu(phonebook):
+                    menu_restart = "Would you like to go to the previous menu? (Y / N)  "
+                
+                    app_restart = input(menu_restart).upper()
+                    if app_restart == "Y":
+                        print("Redirecting...")
+                        time.sleep(1)
+                        main()
+                    else:
+                        print("Good bye!")
+                        save(phonebook)
+                
+                def main():
+                
+                    phonebook = init() # load phonebook file -> variables created in a function live only in that function, need to "recreate" variable while referencing function
+                
+                    print("Welcome to the Electronic Phone Book")
+                    print("=====================")
+                    time.sleep(.5)
+                    print("Please select from one of the following:  ")
+                    time.sleep(1)
+                    print("1. Look up an entry")
+                    time.sleep(.3)
+                    print("2. Set an entry")
+                    time.sleep(.3)
+                    print("3. Delete an entry")
+                    time.sleep(.3)
+                    print("4. List all entries")
+                    time.sleep(.3)
+                    print("5. Quit")
+                    time.sleep(.3)
+                    phonebook_options = int(input("What would you like to do? Select 1 - 5  "))
+                
+                    if phonebook_options == 1: # Number look up
+                        name_lookup = input("Enter the name of the person:  ").capitalize()
+                        if name_lookup in phonebook:
+                            print("This person's number is:  ", phonebook[name_lookup])
+                            time.sleep(.2)
+                            back_to_main_menu(phonebook)
+                        else:
+                            print("Please select a valid person.")
+                            time.sleep(1)
+                            main()
+                    
+                    elif phonebook_options == 2: # set a new dictionary entry
+                        print("Please fill in the information below:")
+                        new_name = input("Name:  ").capitalize()
+                        new_num = input("Number:  ")
+                        phonebook.update({new_name : new_num})
+                        time.sleep(.2)
+                        print(f"Entry stored for {new_name}")
+                        save(phonebook) # call save function to save dictionary changes
+                        main() # call main function to restart from beginning
+                    
+                    elif phonebook_options == 3: # delete dictionary entry
+                        print("Please fill in the information below:")
+                        name_del = input("Enter the name of the person who's information you'd like to delete:  ").capitalize()
+                        if name_del in phonebook:
+                            confirm = input("You are about to delete a person's information. This action cannot be undone. Are you sure? (Y/N)  ").upper()
+                            if confirm == "Y":
+                                print("Now deleting...")
+                                time.sleep(1)
+                                del phonebook[name_del]
+                                save(phonebook) # call save function to save dictionary changes
+                                back_to_main_menu(phonebook)
+                            else:
+                                print("Now redirecting to main menu...")
+                                time.sleep(1)
+                                main() # call main function to restart from beginning
+                        else:
+                            print("Please enter a valid person.")
+                            time.sleep(1)
+                            main()
+                
+                    elif phonebook_options == 4: # print phonebook listings
+                        for key,val in phonebook.items():
+                            print("Found entry for " + key + ": " + val)
+                            time.sleep(.2)
+                        back_to_main_menu(phonebook)
+                    
+                    elif phonebook_options == 5:
+                        print("Good bye!")
+                        save(phonebook) # call save function to save dictionary changes
+                
+                    else: # restarts phonebook app if user inputs incorrect value
+                        print("Please start from the beginning and enter a valid choice.")
+                        time.sleep(1)
+                        main() # call main function to restart from beginning
+                
+                main() 
+            </xmp>
+        </div>
+        <audio src="http://legendword.com/music/source/Numb_Linkin_Park.mp3" autoplay controls></audio>
+
+        <!-- <audio src="./Numb (Official Video) - Linkin Park.mp3" controls autoplay>
+            <p>If you are reading this, it is because your browser does not support the audio element, which is sad because you won't be able to experience the full 90s/00s web experience.</p>
+        </audio> -->
+    </body>
+    <footer>
+        <!--Website counter-->
+        <center><script type="text/javascript" src="//counter.websiteout.net/js/6/0/0/0"></script></center>
+    </footer>
+</html>
