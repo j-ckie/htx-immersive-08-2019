@@ -3,7 +3,7 @@
 
 // Initialize the HTTP request.
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://www.omdbapi.com/?i=tt3896198&apikey=e03ca193");
+xhr.open("GET", "http://www.omdbapi.com/?i=tt0102926&apikey=1d770128");
 
 // Track the state changes of the request.
 xhr.onreadystatechange = function() {
@@ -23,7 +23,7 @@ xhr.send(null);
 // AJAX
 $.ajax({
   type: "GET",
-  url: "http://www.omdbapi.com/?i=tt3896198&apikey=e03ca193",
+  url: "http://www.omdbapi.com/?i=tt0102926&apikey=1d770128",
   dataType: "JSON", // data type expected from server
   success: function(response) {
     console.log(response);
